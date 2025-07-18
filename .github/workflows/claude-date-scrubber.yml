@@ -20,8 +20,8 @@ jobs:
             
             First, use `gh issue view ${{ github.event.issue.number }} --comments` to see the specific date formats that need to be supported.
             
-            For reference, examine PR #206 which shows an example of adding date format support:
-            Use `gh pr view 206` to see the implementation approach.
+            For reference, examine PR #206 from the upstream repository which shows an example of adding date format support:
+            Use `gh pr view 206 --repo approvals/ApprovalTests.Python` to see the implementation approach.
             
             Consider using the python-dateutil package for robust date parsing as suggested in the issue.
             Make sure to:

@@ -1,0 +1,42 @@
+name: Claude Date Scrubber Enhancement
+on:
+  issues:
+    types: [opened, labeled]
+  issue_comment:
+    types: [created]
+
+jobs:
+  claude-date-scrubber:
+    runs-on: ubuntu-latest
+    if: |
+      (github.event.issue.number == 124) ||
+      (github.event.issue.labels && contains(github.event.issue.labels.*.name, 'date-scrubber')) ||
+      (github.event.comment && contains(github.event.comment.body, '@claude') && github.event.issue.number == 124)
+    steps:
+      - uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_instructions: |
+            You are working on issue #124 to extend DateScrubber.get_scrubber_for() to support additional date formats.
+            
+            The following date formats need to be supported:
+            - 2023-12-06T11:59:47.090226
+            - 2021-01-01T00:00:00+00:00
+            - Wed Dec 11 14:59:44 2024
+            - 20250527_125703
+            
+            Consider using the python-dateutil package for robust date parsing as suggested in the issue.
+            Make sure to:
+            1. Analyze the current DateScrubber implementation
+            2. Add support for the missing date formats
+            3. Add comprehensive tests for the new formats
+            4. Update documentation if needed
+            5. Follow the existing code patterns and style
+          allowed_tools: |
+            Bash(uv run tox -e py)
+            Bash(uv run tox -e mypy)
+            Bash(uv tool run ruff check .)
+            Bash(uv tool run black .)
+          trigger_phrase: "@claude"
+          max_turns: "10"

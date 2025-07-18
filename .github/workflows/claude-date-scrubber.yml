@@ -18,11 +18,7 @@ jobs:
           custom_instructions: |
             You are working on extending DateScrubber.get_scrubber_for() to support additional date formats.
             
-            The following date formats need to be supported:
-            - 2023-12-06T11:59:47.090226
-            - 2021-01-01T00:00:00+00:00
-            - Wed Dec 11 14:59:44 2024
-            - 20250527_125703
+            First, use `gh issue view ${{ github.event.issue.number }} --comments` to see the specific date formats that need to be supported.
             
             For reference, examine PR #206 which shows an example of adding date format support:
             Use `gh pr view 206` to see the implementation approach.
@@ -30,7 +26,7 @@ jobs:
             Consider using the python-dateutil package for robust date parsing as suggested in the issue.
             Make sure to:
             1. Analyze the current DateScrubber implementation
-            2. Add support for the missing date formats
+            2. Add support for the missing date formats found in the issue
             3. Add comprehensive tests for the new formats
             4. Update documentation if needed
             5. Follow the existing code patterns and style

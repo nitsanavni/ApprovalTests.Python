@@ -26,6 +26,9 @@ jobs:
             - Wed Dec 11 14:59:44 2024
             - 20250527_125703
             
+            For reference, examine PR #206 which shows an example of adding date format support:
+            Use `gh pr view 206` to see the implementation approach.
+            
             Consider using the python-dateutil package for robust date parsing as suggested in the issue.
             Make sure to:
             1. Analyze the current DateScrubber implementation
@@ -34,9 +37,6 @@ jobs:
             4. Update documentation if needed
             5. Follow the existing code patterns and style
           allowed_tools: |
-            Bash(uv run tox -e py)
-            Bash(uv run tox -e mypy)
-            Bash(uv tool run ruff check .)
-            Bash(uv tool run black .)
+            Bash
           trigger_phrase: "@claude"
           max_turns: "10"

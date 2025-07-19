@@ -8,6 +8,12 @@ on:
 jobs:
   claude-date-scrubber:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+      issues: read
+      id-token: write
+      actions: read # Required for Claude to read CI results on PRs
     if: |
       (github.event.issue.labels && contains(github.event.issue.labels.*.name, 'date-scrubber')) ||
       (github.event.comment && github.event.issue.labels && contains(github.event.issue.labels.*.name, 'date-scrubber') && contains(github.event.comment.body, '@claude'))

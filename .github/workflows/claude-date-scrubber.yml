@@ -12,6 +12,11 @@ jobs:
       (github.event.issue.labels && contains(github.event.issue.labels.*.name, 'date-scrubber')) ||
       (github.event.comment && github.event.issue.labels && contains(github.event.issue.labels.*.name, 'date-scrubber') && contains(github.event.comment.body, '@claude'))
     steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v3
+        
       - uses: anthropics/claude-code-action@beta
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -22,6 +27,14 @@ jobs:
             
             For reference, examine PR #206 from the upstream repository which shows an example of adding date format support:
             Use `gh pr view 206 --repo approvals/ApprovalTests.Python` to see the implementation approach.
+            
+            This project uses uv for dependency management and testing:
+            - To install dependencies: `uv sync`
+            - To run tests: `uv run pytest tests/`
+            - To run specific tests: `uv run pytest tests/scrubbers/test_date_scrubber.py -v`
+            - To run type checking: `uv run tox -e mypy`
+            - To run linting: `uv tool run ruff check .`
+            - To run formatting: `uv tool run black .`
           allowed_tools: |
             Bash
           trigger_phrase: "@claude"

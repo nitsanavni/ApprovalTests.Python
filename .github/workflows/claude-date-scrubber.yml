@@ -32,7 +32,9 @@ jobs:
             - Use `gh pr view 206 --repo approvals/ApprovalTests.Python` to see the implementation approach
             - Use `gh pr diff 206 --repo approvals/ApprovalTests.Python` to see the actual code changes
             
-            To run the specific date scrubber tests, use: `uv run pytest tests/scrubbers/test_date_scrubber.py -v`
+            To run tests:
+            - Specific date scrubber tests: `uv run pytest tests/scrubbers/test_date_scrubber.py -v`
+            - All tests: `uv run pytest tests/`
           allowed_tools: |
             Bash
           trigger_phrase: "@claude"

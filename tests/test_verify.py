@@ -32,7 +32,6 @@ from approvaltests.reporters.reporter_that_automatically_approves import (
     ReporterThatAutomaticallyApproves,
 )
 from approvaltests.reporters.testing_reporter import ReporterForTesting
-from approvaltests.reporters.python_native_reporter import PythonNativeReporter
 from approvaltests.storyboard import Storyboard, verify_storyboard
 
 
@@ -195,7 +194,7 @@ class VerifyTests(unittest.TestCase):
 
     def test_verify_html(self) -> None:
         html = """<!DOCTYPE html><html><head> <title>Example</title> </head> <body> <p>This is an example of a simple HTML page with one paragraph.</p></body></html>"""
-        verify_html(html, options=Options().with_reporter(PythonNativeReporter()))
+        verify_html(html)
 
     def test_newlines_at_end_of_files(self) -> None:
         verify(

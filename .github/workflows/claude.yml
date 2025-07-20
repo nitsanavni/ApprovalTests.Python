@@ -24,16 +24,13 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           custom_instructions: |
-            You are working on the ApprovalTests.Python repository.
+            You are working on the nitsanavni/ApprovalTests.Python fork.
             
             Use `gh issue view ${{ github.event.issue.number }} --comments` to see the full issue and any specific instructions.
             
             To run tests:
             - All tests: `uv run pytest tests/`
             - Specific test files: `uv run pytest tests/path/to/test.py -v`
-            - Type checking: `uv run tox -e mypy`
-            - Linting: `uv tool run ruff check .`
-            - Formatting: `uv tool run black .`
           allowed_tools: |
             Bash
           trigger_phrase: "@claude"

@@ -1,0 +1,39 @@
+name: Claude Assistant
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  claude-assistant:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+      issues: read
+      id-token: write
+      actions: read
+    if: contains(github.event.comment.body, '@claude')
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: astral-sh/setup-uv@v3
+        
+      - run: uv sync
+        
+      - uses: anthropics/claude-code-action@beta
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          custom_instructions: |
+            You are working on the ApprovalTests.Python repository.
+            
+            Use `gh issue view ${{ github.event.issue.number }} --comments` to see the full issue and any specific instructions.
+            
+            To run tests:
+            - All tests: `uv run pytest tests/`
+            - Specific test files: `uv run pytest tests/path/to/test.py -v`
+            - Type checking: `uv run tox -e mypy`
+            - Linting: `uv tool run ruff check .`
+            - Formatting: `uv tool run black .`
+          allowed_tools: |
+            Bash
+          trigger_phrase: "@claude"

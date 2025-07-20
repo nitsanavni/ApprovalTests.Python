@@ -71,6 +71,10 @@ class DateScrubber:
                 r"[12]\d{3}[01]\d[0-3]\d_[0-2]\d[0-5]\d[0-5]\d",
                 ["20250527_125703"],
             ),
+            (
+                r"(Mon|Tue|Wed|Thu|Fri|Sat|Sun),\s([0-3]?\d)\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s(\d{4})\s([0-2]\d:[0-5]\d:[0-5]\d)\s([A-Z]{3,4})",
+                ["Mon, 15 Jan 2024 09:30:45 GMT"],
+            ),
         ]
 
     def __init__(self, date_regex: str):

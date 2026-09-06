@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ApprovalTests configuration explorer</title>
+  <style>
+    :root{color-scheme:light dark;--bg:#f7f9fc;--panel:#fff;--ink:#172b4d;--muted:#52677d;--line:#c7d4e2;--blue:#147dba;--soft:#e8f4fc;--shadow:0 10px 30px #102a4315}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,sans-serif}main{max-width:1180px;margin:auto;padding:32px 22px 56px}h1{margin:0;font-size:clamp(26px,4vw,40px);line-height:1.15}.lede{margin:8px 0 26px;color:var(--muted)}
+    .pipeline{display:grid;grid-template-columns:1fr 48px 1fr 48px 1fr;align-items:stretch}.stage{min-width:0;border:2px solid var(--line);border-radius:12px;background:var(--panel);box-shadow:var(--shadow);transition:.18s;overflow:hidden}.stage.active{border-color:var(--blue);box-shadow:0 0 0 4px color-mix(in srgb,var(--blue) 18%,transparent),var(--shadow);transform:translateY(-2px)}.stage h2{margin:0;padding:10px 14px;background:color-mix(in srgb,var(--line) 30%,var(--panel));font-size:14px}.stage pre{min-height:142px;margin:0;padding:15px;overflow:auto}.arrow{display:grid;place-items:center;color:var(--muted);font-size:30px}.files{display:grid;gap:10px}.file{border:1px solid var(--line);border-radius:8px;overflow:hidden}.file strong{display:block;padding:7px 10px;background:color-mix(in srgb,var(--line) 30%,var(--panel));font-size:12px}.file code{display:block;padding:12px 10px;color:#15803d}
+    .demo{display:grid;grid-template-columns:1fr 42px 1fr;align-items:stretch;margin-top:18px}.demo-value{border:1px solid var(--line);border-radius:10px;background:var(--panel);overflow:hidden}.demo-value span{display:block;padding:7px 12px;background:color-mix(in srgb,var(--line) 30%,var(--panel));color:var(--muted);font-size:12px;font-weight:700}.demo-value code{display:block;min-height:50px;padding:13px 12px;color:var(--ink);font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap}.demo-arrow{display:grid;place-items:center;color:var(--blue);font-size:24px;font-weight:700}.workspace{display:grid;grid-template-columns:250px minmax(0,1fr);gap:18px;margin-top:18px}.choices{display:flex;flex-direction:column;gap:7px}button{font:inherit}.choice{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;color:var(--ink);background:var(--panel);text-align:left;cursor:pointer}.choice:hover{border-color:var(--blue)}.choice[aria-selected=true]{color:var(--blue);border-color:var(--blue);background:var(--soft);font-weight:700}.detail{min-width:0;border:1px solid var(--line);border-radius:12px;background:var(--panel);box-shadow:var(--shadow);overflow:hidden}.detail-head{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;padding:18px 20px 12px}.detail h2{margin:0;font-size:21px}#description{margin:4px 0 0;color:var(--muted)}.copy{flex:none;padding:7px 11px;border:1px solid var(--line);border-radius:7px;color:var(--ink);background:var(--panel);cursor:pointer}
+    pre{color:var(--ink);font:13px/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:4;white-space:pre}#snippet{margin:0;padding:18px 20px 22px;border-top:1px solid var(--line);overflow:auto}.result{display:flex;gap:9px;padding:10px 20px;border-top:1px solid var(--line);color:var(--muted)}.result strong{color:var(--ink)}.kw{color:#7c3aed;font-weight:700}.fn{color:#0369a1}.str{color:#15803d}.type{color:#b45309}
+    @media(max-width:760px){.pipeline{grid-template-columns:1fr}.arrow{min-height:38px;transform:rotate(90deg)}.demo{grid-template-columns:1fr}.demo-arrow{min-height:34px;transform:rotate(90deg)}.workspace{grid-template-columns:1fr}.choices{flex-flow:row wrap}.choice{width:auto;flex:1 1 145px}}@media(prefers-color-scheme:dark){:root{--bg:#0d1726;--panel:#142235;--ink:#e6edf5;--muted:#9fb3c8;--line:#40566d;--blue:#55b5e8;--soft:#173b53;--shadow:0 10px 30px #0005}.file code,.str{color:#65d59a}.kw{color:#c4a7ff}.fn{color:#65c7f3}.type{color:#ffbd70}}
+  </style>
+</head>
+<body><main>
+  <h1>ApprovalTests configuration explorer</h1>
+  <p class="lede">Choose a configuration point to see where it acts and how to change it.</p>
+  <section class="pipeline" aria-label="Approval testing pipeline">
+    <article class="stage" data-stage="representation scrubber"><h2>1 · Object → text</h2><pre><span class="kw">class</span> <span class="type">Order</span>:
+    <span class="kw">def</span> <span class="fn">__str__</span>(self):
+        <span class="kw">return</span> <span class="str">f"{self.item}: ${self.total}"</span></pre></article>
+    <div class="arrow" aria-hidden="true">→</div>
+    <article class="stage" data-stage="namer extension inline"><h2>2 · verify()</h2><pre><span class="kw">def</span> <span class="fn">test_order_summary</span>():
+    order = <span class="type">Order</span>(<span class="str">"Tea"</span>, <span class="str">"4.50"</span>)
+    <span class="fn">verify</span>(order, options=options)</pre></article>
+    <div class="arrow" aria-hidden="true">→</div>
+    <article class="stage" data-stage="namer extension comparator reporter inline"><h2>3 · Approval files</h2><div class="files"><div class="file"><strong>test_order...received.txt</strong><code>Tea: $4.50</code></div><div class="file"><strong>test_order...approved.txt</strong><code>Tea: $4.50</code></div></div></article>
+  </section>
+  <section class="demo" aria-label="Effect of selected configuration">
+    <div class="demo-value"><span id="before-label">Before</span><code id="before-value"></code></div>
+    <div class="demo-arrow" aria-hidden="true">→</div>
+    <div class="demo-value"><span id="after-label">After</span><code id="after-value"></code></div>
+  </section>
+  <section class="workspace">
+    <nav class="choices" aria-label="Configuration points" role="tablist">
+      <button class="choice" role="tab" aria-selected="true" data-option="representation">Representation</button>
+      <button class="choice" role="tab" aria-selected="false" data-option="scrubber">Scrubbers</button>
+      <button class="choice" role="tab" aria-selected="false" data-option="namer">Name &amp; location</button>
+      <button class="choice" role="tab" aria-selected="false" data-option="extension">File extension</button>
+      <button class="choice" role="tab" aria-selected="false" data-option="comparator">Comparator</button>
+      <button class="choice" role="tab" aria-selected="false" data-option="reporter">Reporter</button>
+      <button class="choice" role="tab" aria-selected="false" data-option="inline">Inline approvals</button>
+    </nav>
+    <article class="detail" role="tabpanel" aria-live="polite"><div class="detail-head"><div><h2 id="detail-title"></h2><p id="description"></p></div><button class="copy" type="button">Copy code</button></div><pre id="snippet"></pre><div class="result"><span>Affects:</span><strong id="effect"></strong></div></article>
+  </section>
+</main>
+<script>
+const examples={
+representation:{title:"Change the representation",description:"Control the text written before ApprovalTests creates a received file.",effect:"received-file contents",beforeLabel:"Python object",before:"Order(item='Tea', total='4.50')",afterLabel:"Text written",after:'{"item": "Tea", "total": "4.50"}',code:`from approvaltests import verify_as_json
+
+verify_as_json({"item": "Tea", "total": "4.50"})`},
+scrubber:{title:"Remove unstable values",description:"Transform dates, GUIDs, or other changing data into deterministic values.",effect:"text before it is written",beforeLabel:"Raw test result",before:"Order created: 2026-09-06 18:36:02\nOrder id: 2f1c7a64-40c2-4e68-912f-93e838721abc",afterLabel:"Received-file contents",after:"Order created: <date0>\nOrder id: <guid_0>",code:`from approvaltests import Options, verify
+from approvaltests.scrubbers import scrub_all_dates, scrub_all_guids
+
+options = (Options()
+    .with_scrubber(scrub_all_dates)
+    .add_scrubber(scrub_all_guids))
+verify(result, options=options)`},
+namer:{title:"Change names and locations",description:"Add scenario parameters to file names, or configure a shared subdirectory.",effect:"received and approved paths",beforeLabel:"Default path",before:"test_order.test_summary.received.txt",afterLabel:"Configured path",after:"approved_files/test_order.test_summary.logged-in.admin.received.txt",code:`from approvaltests import verify
+from approvaltests.namer import NamerFactory
+
+options = NamerFactory.with_parameters("logged-in", "admin")
+verify(result, options=options)
+
+# approvaltests_config.json:
+# {"subdirectory": "approved_files"}`},
+extension:{title:"Change the file type",description:"Select a meaningful extension so reporters can choose the appropriate diff tool.",effect:"file names and diff-tool selection",beforeLabel:"Default file",before:"test_order.test_summary.received.txt",afterLabel:"Configured file",after:"test_order.test_summary.received.md",code:`from approvaltests import Options, verify
+
+options = Options().for_file.with_extension(".md")
+verify(markdown, options=options)`},
+comparator:{title:"Change equality",description:"Supply a Comparator when normalized-text equality is not enough.",effect:"the pass/fail decision",beforeLabel:"Compared values",before:"Received: TEA: $4.50\nApproved: tea: $4.50",afterLabel:"Custom comparison",after:"MATCH — case is ignored",code:`from pathlib import Path
+from approvaltests import Options, verify
+from approvaltests.core.comparator import Comparator
+
+class CaseInsensitiveComparator(Comparator):
+    def compare(self, received_path: str, approved_path: str) -> bool:
+        actual = Path(received_path).read_text()
+        expected = Path(approved_path).read_text()
+        return actual.casefold() == expected.casefold()
+
+options = Options().with_comparator(CaseInsensitiveComparator())
+verify(result, options=options)`},
+reporter:{title:"Change the diff and approval action",description:"Choose how a mismatch is displayed and how a received result is approved.",effect:"mismatch presentation and approval",beforeLabel:"Mismatch",before:"received.txt ≠ approved.txt",afterLabel:"Reporter action",after:"Print a unified diff and the approval command",code:`from approvaltests import Options, verify
+from approvaltests.reporters import PythonNativeReporter
+
+options = Options().with_reporter(PythonNativeReporter())
+verify(result, options=options)`},
+inline:{title:"Keep the approval in the test",description:"Replace separate approved files with an approved value beside the test code.",effect:"where the approved value is stored",beforeLabel:"Separate baseline",before:"test_order.test_summary.approved.txt",afterLabel:"Inline baseline",after:'verify(result, options=Options().inline())\n"""Tea: $4.50"""',code:`from approvaltests import Options, verify
+
+verify(result, options=Options().inline())`}
+};
+const escapeHtml=value=>value.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"})[c]);
+const highlight=source=>{let html=escapeHtml(source);html=html.replace(/(".*?")/g,'<span class="str">$1</span>');html=html.replace(/\b(from|import|class|def|return|with|as)\b/g,'<span class="kw">$1</span>');html=html.replace(/\b(Options|Comparator|PythonNativeReporter|NamerFactory|CaseInsensitiveComparator|Path)\b/g,'<span class="type">$1</span>');html=html.replace(/\b(verify|verify_as_json|with_scrubber|add_scrubber|with_extension|with_comparator|with_reporter|inline)\b(?=\()/g,'<span class="fn">$1</span>');return html};
+let selected="representation";
+function selectOption(name){selected=name;const example=examples[name];document.querySelectorAll(".choice").forEach(button=>button.setAttribute("aria-selected",button.dataset.option===name));document.querySelectorAll(".stage").forEach(stage=>stage.classList.toggle("active",stage.dataset.stage.split(" ").includes(name)));document.getElementById("before-label").textContent=example.beforeLabel;document.getElementById("before-value").textContent=example.before;document.getElementById("after-label").textContent=example.afterLabel;document.getElementById("after-value").textContent=example.after;document.getElementById("detail-title").textContent=example.title;document.getElementById("description").textContent=example.description;document.getElementById("effect").textContent=example.effect;document.getElementById("snippet").innerHTML=highlight(example.code)}
+document.querySelectorAll(".choice").forEach(button=>button.addEventListener("click",()=>selectOption(button.dataset.option)));
+document.querySelector(".copy").addEventListener("click",async event=>{await navigator.clipboard.writeText(examples[selected].code);event.currentTarget.textContent="Copied";setTimeout(()=>event.currentTarget.textContent="Copy code",1200)});
+selectOption(selected);
+</script></body></html>

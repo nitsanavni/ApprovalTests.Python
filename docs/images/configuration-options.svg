@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1060" viewBox="0 0 1400 1060" role="img" aria-labelledby="title description" xml:space="preserve">
+  <title id="title">ApprovalTests configuration options</title>
+  <desc id="description">A visual map connecting a Python object, an approval test, received and approved files, and the options that customize each step.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#52606d"/>
+    </marker>
+    <style>
+      .heading { font: 700 30px ui-sans-serif, system-ui, sans-serif; fill: #172b4d; }
+      .subheading { font: 600 18px ui-sans-serif, system-ui, sans-serif; fill: #334e68; }
+      .label { font: 700 16px ui-sans-serif, system-ui, sans-serif; fill: #172b4d; }
+      .body { font: 15px ui-sans-serif, system-ui, sans-serif; fill: #334e68; }
+      .code { font: 14px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #102a43; }
+      .kw { fill: #7c3aed; font-weight: 700; }
+      .fn { fill: #0369a1; }
+      .str { fill: #15803d; }
+      .type { fill: #b45309; }
+      .comment { fill: #64748b; font-style: italic; }
+      .small { font: 13px ui-sans-serif, system-ui, sans-serif; fill: #486581; }
+      .window { fill: #fff; stroke: #9fb3c8; stroke-width: 2; }
+      .windowbar { fill: #e6eef5; }
+      .option { fill: #f0f7ff; stroke: #2680c2; stroke-width: 2; }
+      .flow { fill: none; stroke: #52606d; stroke-width: 2.5; marker-end: url(#arrow); }
+      .optionline { fill: none; stroke: #2680c2; stroke-width: 2; stroke-dasharray: 7 5; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1400" height="1060" fill="#f8fafc"/>
+  <text x="50" y="54" class="heading">How an approval test fits together</text>
+  <text x="50" y="82" class="body">Blue callouts show where you can replace the default behavior.</text>
+
+  <!-- Object -->
+  <g transform="translate(50 125)">
+    <rect class="window" width="350" height="235" rx="8"/>
+    <path class="windowbar" d="M8 0h334a8 8 0 018 8v32H0V8a8 8 0 018-8z"/>
+    <circle cx="20" cy="20" r="5" fill="#ef4e4e"/><circle cx="38" cy="20" r="5" fill="#f7c948"/><circle cx="56" cy="20" r="5" fill="#27ab83"/>
+    <text x="76" y="26" class="small">order.py</text>
+    <text x="18" y="70" class="code"><tspan class="kw">class</tspan><tspan class="type"> Order</tspan>:</text>
+    <text x="42" y="96" class="code"><tspan class="kw">def</tspan><tspan class="fn"> __init__</tspan>(self, item, total):</text>
+    <text x="68" y="122" class="code">self.item = item</text>
+    <text x="68" y="148" class="code">self.total = total</text>
+    <rect x="10" y="161" width="330" height="62" rx="5" fill="#fff8e6" stroke="#f0b429" stroke-width="2"/>
+    <text x="42" y="187" class="code"><tspan class="kw">def</tspan><tspan class="fn"> __str__</tspan>(self):</text>
+    <text x="68" y="211" class="code"><tspan class="kw">return</tspan><tspan class="str"> f"{self.item}: ${self.total}"</tspan></text>
+  </g>
+
+  <!-- Test -->
+  <g transform="translate(525 125)">
+    <rect class="window" width="430" height="235" rx="8"/>
+    <path class="windowbar" d="M8 0h414a8 8 0 018 8v32H0V8a8 8 0 018-8z"/>
+    <circle cx="20" cy="20" r="5" fill="#ef4e4e"/><circle cx="38" cy="20" r="5" fill="#f7c948"/><circle cx="56" cy="20" r="5" fill="#27ab83"/>
+    <text x="76" y="26" class="small">test_order.py</text>
+    <text x="18" y="72" class="code"><tspan class="kw">from</tspan> approvaltests <tspan class="kw">import</tspan> verify</text>
+    <text x="18" y="98" class="code"><tspan class="kw">from</tspan> order <tspan class="kw">import</tspan> Order</text>
+    <text x="18" y="140" class="code"><tspan class="kw">def</tspan><tspan class="fn"> test_order_summary</tspan>():</text>
+    <text x="42" y="166" class="code">order = <tspan class="type">Order</tspan>(<tspan class="str">"Tea", "4.50"</tspan>)</text>
+    <rect x="10" y="181" width="410" height="42" rx="5" fill="#e3f8ff" stroke="#2680c2" stroke-width="2"/>
+    <text x="42" y="208" class="code"><tspan class="fn">verify</tspan>(order)</text>
+  </g>
+
+  <path class="flow" d="M400 242 H512"/>
+  <text x="431" y="226" class="small">object</text>
+
+  <!-- Output files -->
+  <g transform="translate(1040 105)">
+    <rect class="window" width="310" height="125" rx="8"/>
+    <path class="windowbar" d="M8 0h294a8 8 0 018 8v32H0V8a8 8 0 018-8z"/>
+    <text x="16" y="26" class="small">test_order...received.txt</text>
+    <text x="18" y="78" class="code"><tspan class="str">Tea: $4.50</tspan></text>
+    <text x="18" y="105" class="small">written on every test run</text>
+  </g>
+  <g transform="translate(1040 270)">
+    <rect class="window" width="310" height="125" rx="8"/>
+    <path class="windowbar" d="M8 0h294a8 8 0 018 8v32H0V8a8 8 0 018-8z"/>
+    <text x="16" y="26" class="small">test_order...approved.txt</text>
+    <text x="18" y="78" class="code"><tspan class="str">Tea: $4.50</tspan></text>
+    <text x="18" y="105" class="small">reviewed baseline in source control</text>
+  </g>
+  <path class="flow" d="M955 220 C995 220 994 168 1027 168"/>
+  <path class="flow" d="M955 260 C995 260 994 332 1027 332"/>
+  <path class="flow" d="M1195 230 V257"/>
+  <text x="1210" y="250" class="small">approve</text>
+
+  <!-- Options -->
+  <text x="50" y="445" class="subheading">Choose the part of the pipeline you want to change</text>
+
+  <g transform="translate(50 475)">
+    <rect class="option" width="405" height="145" rx="10"/>
+    <text x="18" y="30" class="label">1 · Representation</text>
+    <text x="18" y="57" class="body">Changes file contents before comparison</text>
+    <text x="18" y="86" class="code">__str__()</text>
+    <text x="18" y="110" class="code">verify_as_json(order)</text>
+    <text x="18" y="134" class="code">register_formatter(my_formatter)</text>
+  </g>
+  <path class="optionline" d="M250 475 C250 420 225 405 225 365"/>
+
+  <g transform="translate(497 475)">
+    <rect class="option" width="405" height="145" rx="10"/>
+    <text x="18" y="30" class="label">2 · Scrubbing</text>
+    <text x="18" y="57" class="body">Makes unstable values deterministic</text>
+    <text x="18" y="90" class="code"><tspan class="type">Options</tspan>().<tspan class="fn">with_scrubber</tspan>(scrub_all_dates)</text>
+    <text x="42" y="118" class="code">.<tspan class="fn">add_scrubber</tspan>(scrub_all_guids)</text>
+  </g>
+  <path class="optionline" d="M700 475 V370"/>
+
+  <g transform="translate(945 475)">
+    <rect class="option" width="405" height="145" rx="10"/>
+    <text x="18" y="30" class="label">3 · File name and location</text>
+    <text x="18" y="57" class="body">Controls where received and approved files live</text>
+    <text x="18" y="88" class="code"><tspan class="type">Options</tspan>().<tspan class="fn">with_namer</tspan>(custom_namer)</text>
+    <text x="18" y="116" class="code">approvaltests_config.json → subdirectory</text>
+  </g>
+  <path class="optionline" d="M1147 475 V405"/>
+
+  <g transform="translate(50 660)">
+    <rect class="option" width="405" height="145" rx="10"/>
+    <text x="18" y="30" class="label">4 · File type</text>
+    <text x="18" y="57" class="body">Changes the extension and associated diff tool</text>
+    <text x="18" y="91" class="code"><tspan class="type">Options</tspan>().for_file.<tspan class="fn">with_extension</tspan>(<tspan class="str">".json"</tspan>)</text>
+    <text x="18" y="119" class="code"><tspan class="fn">verify_binary</tspan>(data, <tspan class="str">".png"</tspan>)</text>
+  </g>
+  <path class="optionline" d="M455 730 C970 730 930 390 1027 355"/>
+
+  <g transform="translate(497 660)">
+    <rect class="option" width="405" height="145" rx="10"/>
+    <text x="18" y="30" class="label">5 · Comparison</text>
+    <text x="18" y="57" class="body">Defines when received and approved match</text>
+    <text x="18" y="91" class="code"><tspan class="type">Options</tspan>().<tspan class="fn">with_comparator</tspan>(my_comparator)</text>
+    <text x="18" y="119" class="small">Default: FileComparator()</text>
+  </g>
+  <path class="optionline" d="M902 730 C990 730 970 380 1027 345"/>
+
+  <g transform="translate(945 660)">
+    <rect class="option" width="405" height="145" rx="10"/>
+    <text x="18" y="30" class="label">6 · Diff and approval action</text>
+    <text x="18" y="57" class="body">Chooses how a mismatch is displayed or approved</text>
+    <text x="18" y="88" class="code"><tspan class="type">Options</tspan>().<tspan class="fn">with_reporter</tspan>(<tspan class="type">PythonNativeReporter</tspan>())</text>
+    <text x="42" y="116" class="code">.<tspan class="fn">add_reporter</tspan>(my_reporter)</text>
+  </g>
+  <path class="optionline" d="M1147 660 V405"/>
+
+  <g transform="translate(273 845)">
+    <rect class="option" width="405" height="145" rx="10"/>
+    <text x="18" y="30" class="label">7 · Inline approvals</text>
+    <text x="18" y="57" class="body">Keeps the approved value in the test source</text>
+    <text x="18" y="91" class="code"><tspan class="type">Options</tspan>().<tspan class="fn">inline</tspan>()</text>
+    <text x="18" y="119" class="small">Replaces the separate approved file workflow</text>
+  </g>
+  <path class="optionline" d="M475 845 C475 810 650 820 650 370"/>
+
+  <g transform="translate(722 845)">
+    <rect width="405" height="145" rx="10" fill="#fff8e6" stroke="#f0b429" stroke-width="2"/>
+    <text x="18" y="30" class="label">Options compose</text>
+    <text x="18" y="58" class="body">Chain changes, then pass the result to verify:</text>
+    <text x="18" y="88" class="code">options = (Options()</text>
+    <text x="42" y="112" class="code">.with_scrubber(scrub_all_dates)</text>
+    <text x="42" y="136" class="code">.with_reporter(PythonNativeReporter()))</text>
+  </g>
+</svg>
